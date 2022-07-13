@@ -25,14 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         weather().execute()
-
-
     }
 
     fun expand(view: View) {
@@ -53,9 +48,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             CITY = ocity.toString()
         }
-
-//println(ocity)
-//        Toast.makeText(applicationContext,"Es la ciudad "+ocity,Toast.LENGTH_LONG).show()
         Toast.makeText(applicationContext, "Es la ciudad " + CITY, Toast.LENGTH_LONG).show()
         weather().execute()
     }
@@ -63,15 +55,14 @@ class MainActivity : AppCompatActivity() {
     inner class weather() : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
-            findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.GONE
-            findViewById<TextView>(R.id.errorText).visibility = View.GONE
+            binding.loader.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.GONE
+            binding.errorText.visibility = View.GONE
         }
 
         override fun doInBackground(vararg p0: String?): String? {
             var response: String?
             try {
-
                 response =
                     URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&lang=es&appid=$API").readText(
                         Charsets.UTF_8
@@ -94,7 +85,6 @@ class MainActivity : AppCompatActivity() {
                 val updateAt: Long = jsonObj.getLong("dt")
                 val updateAtText = "Actualizado a las: " + SimpleDateFormat(
                     "dd/MM/yyyy hh:mm a",
-                    Locale.ENGLISH
                 ).format(Date(updateAt))
                 val temp = main.getString("temp") + "ºC"
                 val feelsL = main.getString("feels_like") + "ºC"
@@ -106,36 +96,34 @@ class MainActivity : AppCompatActivity() {
                 val sunset: Long = sys.getLong("sunset")
                 val windSpeed = "Velocidad viento: " + wind.getString("speed") + "m/s"
                 val windDeg = "Dirección viento: " + wind.getString("deg") + "m/s"
-//                val wg = "Rafaga viento: " + wind.getString("gust") + "m/s"
                 val clouding = "Nubosidad: " + cloud.getString("all") + "%"
                 val weatherDescription = weather.getString("description")
 //                val icon = weather.
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
-                findViewById<TextView>(R.id.address).text = address
-                findViewById<TextView>(R.id.update_at).text = updateAtText
-                findViewById<TextView>(R.id.status).text = weatherDescription.capitalize()
-                findViewById<TextView>(R.id.temp).text = temp
+                binding.address.text = address
+                binding.updateAt.text = updateAtText
+                binding.status.text = weatherDescription.capitalize()
+                binding.temp.text = temp
                 binding.feels.text = feelsL
-                findViewById<TextView>(R.id.temp_min).text = tempMin
-                findViewById<TextView>(R.id.temp_max).text = tempMax
+                binding.tempMin.text = tempMin
+                binding.tempMax.text = tempMax
 //                findViewById<TextView>(R.id.sunrise).text =
 //                    SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise * 1000))
 //                findViewById<TextView>(R.id.sunset).text =
 //                    SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset * 1000))
-                findViewById<TextView>(R.id.windS).text = windSpeed
-                findViewById<TextView>(R.id.pressure).text = pressure
-                findViewById<TextView>(R.id.humidity).text = humidity
+                binding.windS.text = windSpeed
+                binding.pressure.text = pressure
+                binding.humidity.text = humidity
                 binding.windD.text = windDeg
-//                binding.windG.text = wg
                 binding.cloud.text = clouding
 //                binding.imageWeather.imageAlpha =
 
-                    findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
-                findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.VISIBLE
+                binding.loader.visibility = View.GONE
+                binding.mainContainer.visibility = View.VISIBLE
             } catch (e: Exception) {
-                findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
-                findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
+                binding.loader.visibility = View.GONE
+                binding.errorText.visibility = View.VISIBLE
             }
         }
     }
