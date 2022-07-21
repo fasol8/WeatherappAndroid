@@ -1,4 +1,4 @@
-package com.fa.weatherapp
+package com.fa.weatherapp.view
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,13 +19,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.fa.weatherapp.R
 import com.fa.weatherapp.databinding.ActivityMainBinding
 import com.google.android.gms.location.*
 import org.json.JSONObject
 import java.net.URL
 import java.util.*
-import java.util.jar.Manifest
-import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
 

@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.225" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.394" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_weather.xml" value="0.29375" />
       </map>
     </option>
   </component>

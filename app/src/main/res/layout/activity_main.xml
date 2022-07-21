@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="25dp"
-        tools:context=".MainActivity">
+        tools:context=".view.MainActivity">
 
         <RelativeLayout
             android:id="@+id/mainContainer"
@@ -20,44 +20,29 @@
             android:layout_height="match_parent"
             android:visibility="visible">
 
+
+            <!--                android:id="@+id/cityText"-->
+            <!--                android:id="@+id/searchButton"-->
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/cityText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
             <LinearLayout
                 android:id="@+id/addressContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="51dp"
+                android:layout_marginEnd="3dp"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/locationButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:onClick="location"
-                        android:src="@drawable/ic_baseline_location_on_24" />
-
-                    <EditText
-                        android:id="@+id/cityText"
-                        android:layout_width="240dp"
-                        android:layout_height="match_parent"
-                        android:hint="Ciudad"
-                        android:inputType="text"
-                        android:textSize="16dp" />
-
-                    <ImageButton
-                        android:id="@+id/searchButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:onClick="update"
-                        android:src="@drawable/ic_baseline_search_24" />
-
-                </LinearLayout>
-
 
                 <TextView
                     android:id="@+id/address"
@@ -252,136 +237,10 @@
                     android:layout_height="wrap_content"
                     android:text="En los proximos dias"
                     android:textSize="18dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="#3CF1EB"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_baseline_search_24"
-                            android:tint="#fff">
-
-                        </ImageView>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp"></Space>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Amanecer"
-                            android:textSize="12sp">
-
-                        </TextView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="5:30am"
-                            android:textSize="14sp">
-
-                        </TextView>
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"></Space>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="#3CF1EB"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="21dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_baseline_search_24"
-                            android:tint="#fff">
-
-                        </ImageView>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp"></Space>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Atardecer"
-                            android:textSize="12sp">
-
-                        </TextView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="5:30am"
-                            android:textSize="14sp">
-
-                        </TextView>
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"></Space>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="#3CF1EB"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_baseline_search_24"
-                            android:tint="#fff">
-
-                        </ImageView>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp"></Space>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="viento"
-                            android:textSize="12sp">
-
-                        </TextView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="5:30am"
-                            android:textSize="14sp">
-
-                        </TextView>
-                    </LinearLayout>
-
-                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    />
             </LinearLayout>
 
         </RelativeLayout>
